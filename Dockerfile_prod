@@ -1,0 +1,16 @@
+FROM node:12-alpine
+
+WORKDIR /app
+
+ADD package.json package.json
+ADD package-lock.json package-lock.json
+
+RUN npm i --production
+
+ADD knexfile.js knexfile.js
+ADD config config
+ADD priv priv
+ADD src src
+
+CMD ["node", "src/index.js"]
+
